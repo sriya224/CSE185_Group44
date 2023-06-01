@@ -5,4 +5,4 @@ The tool will count the number of kmers in A DNA sequence. The user will be able
 
 
 How to Run:
-1) Make a copy of the JellyFish Command Team.py file and run it in a Jupyter Notebook.
+1) Make a copy of the JellyFishCommand.ipynb file and the example_genome.fa file and run the Jupyter Notebook in a folder in Jupyter Notebook. You can also clone this repository using git clone and run our Jupyter notebook file and see that there is an outputted file with the kmer counts in the same folder.
