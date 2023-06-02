@@ -74,7 +74,7 @@ def filter_low_freq(hashtable, threshold):
     for key, value in hashtable.items(): 
         mylist = [key,value]
 
-        print(mylist)
+        #print(mylist)
         if(int(mylist[1]) > int(threshold)):
             inside = True
             outputhash[mylist[0]] = mylist[1]
