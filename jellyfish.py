@@ -5,7 +5,7 @@
 
 
 import argparse
-from Jellyfish import generateTable
+from Jellyfish_Functions import generateTable
 import os
 import sys
 
