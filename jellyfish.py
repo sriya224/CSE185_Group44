@@ -8,7 +8,7 @@ import argparse
 from Jellyfish import generateTable
 import os
 import sys
-#from version import __version__
+
 def main():
     parser=argparse.ArgumentParser(
         prog = "Jellyfish",
@@ -17,7 +17,7 @@ def main():
     
     #input
     parser.add_argument("-l","--length", help="length of kmer :)", type=int, required=True)
-    parser.add_argument("-f", "--filename", help = "input your fasta file path :)", required = True, \
+    parser.add_argument("-f", "--filename", help = "input your fasta file path :)", \
                         metavar="FILE", type=str, required=True)
     
     #other options
@@ -40,6 +40,6 @@ def main():
     
     generateTable(args.filename, args.length, args.out, args.ignore_directionality, args.filter_kmer)
     
-    if __name__ == "__main__":
+if __name__ == "__main__":
         main()
 
