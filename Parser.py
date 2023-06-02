@@ -8,7 +8,7 @@ import argparse
 from Jellyfish import generateTable
 import os
 import sys
-from version import __version__
+#from version import __version__
 def main():
     parser=argparse.ArgumentParser(
         prog = "Jellyfish",
