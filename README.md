@@ -19,7 +19,7 @@ __How to Run:__
         pip install biopython
 2) Install our directory
    
-        git clone https://github.com/sriya224/CSE185_Group44.git
+        git clone https://github.com/##user##/CSE185_Group44.git
 3) Change into the directory CSE185_Group44
    
         cd CSE_185_Group44
