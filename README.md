@@ -4,7 +4,7 @@ Implementing the Jellyfish command to generate a table with kmer counts.
 
 Our implementation of jellyfish is a command line tool that will output a table containing kmer-counts from a fasta file. Our tool takes in a fasta file, output file anme, and the length of the kmers the user wants to count to output a .txt file containing the kmer keys and their respective counts. Our tool also has the option to ignore strand directionality using the option --cannonical and the option to filter out kmers with frequencies lower than a certain value the user inputs through -k <frequency>.
 
-Command: python jellyfish.py -f (filename(include path)) -l (kmer length) -o (output name)
+__Command__: python jellyfish.py -f (filename(include path)) -l (kmer length) -o (output name)
 
     options: -f = filename, with path defined (required)
              -l = kmer length (required)
@@ -13,12 +13,16 @@ Command: python jellyfish.py -f (filename(include path)) -l (kmer length) -o (ou
              -k = filter kmer's with counts less than inputted value
 
 
-How to Run:
+__How to Run:__
 1) Instiall Biopython by using the command 
-    pip install biopython
+    
+        pip install biopython
 2) Install our directory
-    git clone https://github.com/sriya224/CSE185_Group44.git
+   
+        git clone https://github.com/sriya224/CSE185_Group44.git
 3) Change into the directory CSE185_Group44
-    cd CSE_185_Group44
+   
+        cd CSE_185_Group44
 4) Run the jellyfish command! Here is an example:
-    python jellyfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -cannonical -k 10 -o output.txt
+    
+        python jellyfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -cannonical -k 10 -o output.txt
