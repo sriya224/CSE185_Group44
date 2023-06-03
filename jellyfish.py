@@ -5,10 +5,10 @@
 
 
 import argparse
-from Jellyfish_Functions import generateTable
+from Jellyfish import generateTable
 import os
 import sys
-
+#from version import __version__
 def main():
     parser=argparse.ArgumentParser(
         prog = "Jellyfish",
@@ -18,14 +18,14 @@ def main():
     #input
     parser.add_argument("-l","--length", help="length of kmer :)", type=int, required=True)
     parser.add_argument("-f", "--filename", help = "input your fasta file path :)", \
-                        metavar="FILE", type=str, required=True)
+                        metavar="FILE", type=str, required = True)
     
     #other options
 
     #ignore directionality
     parser.add_argument("-cannonical","--ignore_directionality", \
                         help="this option ignores the directionality of the sequence", \
-                        action="store_true", metavar = "REG", default=False, required=False)
+                        action="store_true", default=False, required=False)
 
     #filter kmers
     parser.add_argument("-k","--filter_kmer", help="filter out kmers with a frequency lower than your input :D", \
@@ -42,4 +42,3 @@ def main():
     
 if __name__ == "__main__":
         main()
-
