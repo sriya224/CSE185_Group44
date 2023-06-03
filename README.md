@@ -1,9 +1,24 @@
 # CSE185_Group44
-Implementing Jellyfish command to generate a table for kmer counts.
 
-The tool will count the number of kmers in A DNA sequence. The user will be able to specify the desired length of the kmer as an  input to  output and count the number of kmers that meet that desired kmer length, for the kmer counting function itself. There is an option to ignore strand directionality while counting number of kmers. Additionally, the tool will be more precise by filtering out low-frequency kmers. The tool takes a fasta file as an input and outputs a text file containing the kmer counts and their respective names.
+Implementing the Jellyfish command to generate a table with kmer counts.
+
+Our implementation of jellyfish is a command line tool that will output a table containing kmer-counts from a fasta file. Our tool takes in a fasta file, output file anme, and the length of the kmers the user wants to count to output a .txt file containing the kmer keys and their respective counts. Our tool also has the option to ignore strand directionality using the option --cannonical and the option to filter out kmers with frequencies lower than a certain value the user inputs through -k <frequency>.
+
+Command: python jellyfish.py -f (filename(include path)) -l (kmer length) -o (output name)
+
+    options: -f = filename, with path defined (required)
+             -l = kmer length (required)
+             
+             -cannonical = if option is stated jellyfish will ignore directionality
+             -k = filter kmer's with counts less than inputted value
 
 
 How to Run:
-1) Instiall Biopython by using the command pip install biopython
-2) Make a copy of the JellyFishCommand.ipynb file and the example_genome.fa file and run the Jupyter Notebook in a folder in JupyterHub. You can also clone this repository using git clone and run our Jupyter notebook file and see that there is an outputted file with the kmer counts in the same folder.
+1) Instiall Biopython by using the command 
+    pip install biopython
+2) Install our directory
+    git clone https://github.com/sriya224/CSE185_Group44.git
+3) Change into the directory CSE185_Group44
+    cd CSE_185_Group44
+4) Run the jellyfish command! Here is an example:
+    python jellyfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -cannonical -k 10 -o output.txt
