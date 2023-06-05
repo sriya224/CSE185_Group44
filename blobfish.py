@@ -23,7 +23,7 @@ def main():
     #other options
 
     #ignore directionality
-    parser.add_argument("-cannonical","--ignore_directionality", \
+    parser.add_argument("-canonical","--ignore_directionality", \
                         help="this option ignores the directionality of the sequence", \
                         action="store_true", default=False, required=False)
 
