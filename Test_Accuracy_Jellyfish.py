@@ -7,8 +7,8 @@ f = open('jellyfishoutput.txt','r')
 for row in f:
     if '>' in row: 
         counts.append(int(row[1:]))
-else: 
-    kmers.append(row)
+    else: 
+        kmers.append(row)
   
 plt.bar(kmers, counts, color = 'g', label = 'File Data')
   
