@@ -3,7 +3,7 @@
 
 # In[17]:
 
-
+#This file contains all of the functions that are used to run our blobfish method
 from Bio import SeqIO
 
 #function to read in input sequence from fasta file and output a file containing kmer table 
@@ -16,8 +16,6 @@ def generateTable(input_fa, kmer_length, output, directionality, filter_kmer):
 
     for sequ in SeqIO.parse(open(seq_file),'fasta'):
         sequence = str(sequ.seq)
-
-    #print(sequence)
     
     if(directionality == True):
         ignore_directionality(sequence, kmer_length, hashtable)
@@ -26,9 +24,9 @@ def generateTable(input_fa, kmer_length, output, directionality, filter_kmer):
     #FILTER
     if(filter_kmer > 0):
         hashtable = filter_low_freq(hashtable, filter_kmer)
-    #output the kmer counts in a txt file
+    
+    #OUTPUT the kmer counts in a txt file
     output_txt = output
-    #if user chooses to filter low frequencies call helper method, else output hashtable into txt file
     with open(output_txt, "w") as out_file:
         for kmer, count in hashtable.items():
                 out_file.write(f"{kmer}\t{count}\n")
