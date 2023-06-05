@@ -6,7 +6,7 @@
 
 from Bio import SeqIO
 
-#function to read in input sequence from fasta file and output a file containing kmer table
+#function to read in input sequence from fasta file and output a file containing kmer table 
 def generateTable(input_fa, kmer_length, output, directionality, filter_kmer):
 
     seq_file = input_fa
