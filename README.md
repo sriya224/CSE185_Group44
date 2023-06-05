@@ -22,7 +22,7 @@ __How to Run:__
         git clone https://github.com/##user##/CSE185_Group44.git
 3) Change into the directory CSE185_Group44
    
-        cd CSE_185_Group44
+        cd CSE185_Group44
 4) Run the jellyfish command! Here is an example:
     
         python jellyfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -cannonical -k 10 -o output.txt
