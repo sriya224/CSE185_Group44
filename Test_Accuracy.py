@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 kmers = []
 counts = []
   
-f = open('output.txt','r')
+f = open('outputBlob.txt','r')
 for row in f:
     row = row.split('\t')
     kmers.append(row[0])
