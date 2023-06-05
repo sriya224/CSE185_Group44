@@ -5,13 +5,13 @@
 
 
 import argparse
-from Jellyfish_Functions import generateTable
+from Blobfish_Functions import generateTable
 import os
 import sys
 #from version import __version__
 def main():
     parser=argparse.ArgumentParser(
-        prog = "Jellyfish",
+        prog = "Blobfish",
         description = "Command line script to perform counting of Kmers <3"
     )
     
