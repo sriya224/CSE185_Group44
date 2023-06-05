@@ -5,7 +5,7 @@ counts = []
   
 f = open('jellyfishoutput.txt','r')
 for row in f:
-    if '>' in line: 
+    if '>' in row: 
         counts.append(int(row[1:]))
 else: 
     kmers.append(row)
