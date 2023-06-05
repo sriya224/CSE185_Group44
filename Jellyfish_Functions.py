@@ -84,11 +84,6 @@ def filter_low_freq(hashtable, threshold):
 
 
 
-seq_file = "example_genome.fa"
-output_txt = 'output_now.txt'
-generateTable(seq_file, 6, output_txt, True, 18)
-
-
 # In[ ]:
 
 
