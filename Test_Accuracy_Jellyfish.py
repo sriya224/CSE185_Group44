@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 kmers = []
 counts = []
   
-f = open('realoutput.txt','r')
+f = open('jellyfishoutput.txt','r')
 for row in f:
     if '>' in line: 
         counts.append(int(row[1:]))
