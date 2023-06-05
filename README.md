@@ -25,4 +25,4 @@ __How to Run:__
         cd CSE185_Group44
 4) Run the jellyfish command! Here is an example:
     
-        python Jellyfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -cannonical -k 10 -o output.txt
+        python Blobfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -cannonical -k 10 -o output.txt
