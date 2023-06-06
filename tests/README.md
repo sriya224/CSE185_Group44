@@ -31,10 +31,7 @@ You can run the code we have to benchmark in Jupyter notebook or your local pyth
         file1 = "jellyfish_output.txt"
         file2 = "blobfish_output.txt"
         accuracy = compare_kmer_counts(file1, file2)
-        
-        #![image](https://github.com/sriya224/CSE185_Group44/assets/122697432/bfadd546-7321-4cfd-83b9-205669d89b40)
-
-        > Histograms
-        > Accuracy: 100%
+      >  
+     ![image](benchmarking.png)
 
 
