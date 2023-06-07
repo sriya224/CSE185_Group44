@@ -32,9 +32,14 @@ __How to Benchmark__
     
  __About our Repo:__
     
-        - src folder : contains all of the functions that give blobfish its functionality
-            - blobfish.py : the main() function for blobfish which takes command line arguments and runs our python function in Blobfish_Functions.py
-            - Blobfish_Functions.py : the python script containing functions that calculate kmer count table with
-        - tests folder : contains files and README regarding benchmarking
-            - accuracy.py : file that computes accuracy score for kmer count table and histogram visualizations of benchmarking files
-        - setup.py : file for setting up blobfish package
+- src folder : contains all of the functions that give blobfish its functionality
+    
+    - blobfish.py : the main() function for blobfish which takes command line arguments and runs our python function in Blobfish_Functions.py
+    
+    - Blobfish_Functions.py : the python script containing functions that calculate kmer count table with
+    
+- tests folder : contains files and README regarding benchmarking
+    
+    - accuracy.py : file that computes accuracy score for kmer count table and histogram visualizations of benchmarking files
+    
+- setup.py : file for setting up blobfish package
