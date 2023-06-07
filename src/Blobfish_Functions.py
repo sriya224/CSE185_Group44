@@ -51,7 +51,7 @@ def generateTable(input_fa, kmer_length, output, directionality, filter_kmer, fi
     # write final kmer counts into user specified output file
     output_txt = output
     with open(output_txt, "w") as out_file:
-        for kmer, count in hashtable.items():
+        for kmer, count in sorted(hashtable.items()):
                 out_file.write(f"{kmer}\t{count}\n")
 
                 
