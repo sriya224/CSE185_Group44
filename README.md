@@ -30,7 +30,8 @@ __How to Run:__
 __How to Benchmark__
     Please read the README file in the tests folder to find out how to benchmark our tool
     
- __About our Repo__
+ __About our Repo:__
+    
         - src folder : contains all of the functions that give blobfish its functionality
             - blobfish.py : the main() function for blobfish which takes command line arguments and runs our python function in Blobfish_Functions.py
             - Blobfish_Functions.py : the python script containing functions that calculate kmer count table with
