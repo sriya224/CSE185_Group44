@@ -27,9 +27,13 @@ def main():
                         help="this option ignores the directionality of the sequence", \
                         action="store_true", default=False, required=False)
 
-    #filter kmers
-    parser.add_argument("-k","--filter_kmer", help="filter out kmers with a frequency lower than your input :D", \
+    #filter kmers by count
+    parser.add_argument("-k","--filter_count", help="filter out kmers with a frequency lower than your input :D", \
                         type=int,metavar = "REG", default=0, required = False)
+    
+    #filter kmers automatically
+    parser.add_argument("-a","--filter_auto", help="filter out kmers automatically :D", \
+                        action = "store_true", default=False, required = False)
     
     #output
     parser.add_argument("-o", "--out", help="give your output file path here, include the filetype .txt!" \
@@ -38,7 +42,8 @@ def main():
     #parse args
     args = parser.parse_args()
     
-    generateTable(args.filename, args.length, args.out, args.ignore_directionality, args.filter_kmer)
+    
+    generateTable(args.filename, args.length, args.out, args.ignore_directionality, args.filter_count, args.filter_auto)
     
 if __name__ == "__main__":
         main()
