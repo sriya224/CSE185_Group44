@@ -3,29 +3,46 @@
 
 # In[17]:
 
-#This file contains all of the functions that are used to run our blobfish method
+###This file contains all of the functions that are used to run our blobfish method###
+
+# import needed packages
 from Bio import SeqIO
 
-#function to read in input sequence from fasta file and output a file containing kmer table 
+## This function reads a sequence from the inputted fasta file and outputs a file containing the desired kmer count table
+# Parameters: 
+# input_fa: the user given fasta file
+# kmer_length: int with the number of bases that are in each kmer 
+# output: the user given output text file 
+# directionality: boolean value to either consider directionality or not 
+# filter_kmer: int value with the threshold value for filtering, if filtering is specified by the user 
 def generateTable(input_fa, kmer_length, output, directionality, filter_kmer):
 
+    # seq_file has input fasta file's data
     seq_file = input_fa
 
     #implement hashtable using dictionary
     hashtable = {}
 
+    # extract the sequence from the fasta file
+    # utilizes the SeqIO package 
     for sequ in SeqIO.parse(open(seq_file),'fasta'):
         sequence = str(sequ.seq)
     
+    ## IGNORE DIRECTIONALITY
+    # call ignore_directionality function to count kmers if the user has specified the ignore directionality option
     if(directionality == True):
         ignore_directionality(sequence, kmer_length, hashtable)
+    # Otherwise, call count_kmers which counts without considering the reverse strand 
     else:
-        count_kmers(sequence, hashtable, kmer_length, filter_kmer)
-    #FILTER
+        count_kmers(sequence, hashtable, kmer_length)
+        
+    ## FILTER
+    # if the user specified a threshold value to filter by in their command, then call filter_low_freq
     if(filter_kmer > 0):
         hashtable = filter_low_freq(hashtable, filter_kmer)
     
-    #OUTPUT the kmer counts in a txt file
+    ## OUTPUT
+    # write final kmer counts into user specified output file
     output_txt = output
     with open(output_txt, "w") as out_file:
         for kmer, count in hashtable.items():
@@ -33,16 +50,22 @@ def generateTable(input_fa, kmer_length, output, directionality, filter_kmer):
 
                 
 
-#function to generate hashtable with kmer counts without ignoring directionality
-def count_kmers(sequence, hashtable, kmer_length, filter_kmer):
-    #for every kmer of length kmer_length, push into hashtable and increment key if not unique
+## Function to generate hashtable with kmer counts (this does not ignore directionality / consider the reverse strand when counting)
+# Parameters: 
+# sequence: DNA sequence from which to count kmers
+# hashtable: data structure to store the counted kmers. key = kmer string, value = kmer count 
+# kmer_length: int with the number of bases that are in each kmer 
+def count_kmers(sequence, hashtable, kmer_length):
+    # iterate through sequence and for every kmer of length kmer_length, push it into the hashtable
+    # only unique kmer values are stored, the value of the kmer is incremented if more than one exists
     for i in range(len(sequence)-kmer_length +1):
         end = kmer_length + i
         kmer_key = sequence[i:end]
         hashtable[kmer_key] = hashtable.get(kmer_key, 0) + 1
         
-    #print(hashtable)
 
+## Function to count kmers while ignoring directionality / considering the reverse strand when counting
+# Parameter 
 # sequence parameter takes the user's sequence from which we should count kmers 
 # kmer parameter takes user's desired kmer size
 def ignore_directionality(sequence, kmer_length, hashtable):
