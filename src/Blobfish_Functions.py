@@ -71,73 +71,86 @@ def count_kmers(sequence, hashtable, kmer_length):
         
 
 ## Function to count kmers while ignoring directionality / considering the reverse strand when counting
-    # Parameters
-    # sequence parameter takes the user's sequence from which we should count kmers 
-    # kmer parameter takes user's desired kmer size
+# Parameters: 
+# sequence: DNA sequence from which to count kmers
+# kmer_length: int with the number of bases that are in each kmer 
+# hashtable: data structure to store the counted kmers. key = kmer string, value = kmer count
 def ignore_directionality(sequence, kmer_length, hashtable):
+    # reference dictionary that maps each nucleotide to its complement 
     nucleotides = {'A':'T', 'T':'A', 'G':'C', 'C':'G'}
-    
+    # iterate over sequence to count kmers 
     for i in range(len(sequence)-kmer_length+1):
         end = kmer_length + i
+	# for each kmer, store its string value and its reverse complement’s string value 
         kmer_key = sequence[i:end]
         kmer_complement = ''.join(nucleotides[key] for key in reversed(kmer_key))
-
+	# stores the lexicographically smaller kmer out of kmer and kmer_complement in the hash table 
+	# increments / adds either kmer_key or kmer_complement, never both
         if kmer_key < kmer_complement:
             hashtable[kmer_key] = hashtable.get(kmer_key, 0) + 1
         else: 
             hashtable[kmer_complement] = hashtable.get(kmer_complement, 0) + 1
 
-# Function to filter out low frequency kmers by inputted count
-   ## Parameters:
-    # hashtable = dictionary
-    # threshold = inputted filtering count
+## Function to filter out low frequency kmers according to the threshold value 
+# Parameters: 
+# hashtable: dictionary to store the counted kmers. key = kmer string, value = kmer count
+# threshold: any kmers that have a count that is less than or equal to the threshold will be filtered out
 def filter_count(hashtable, threshold):
-    inside = False
     mylist = []
+    # dictionary that will store all kmers that are above threshold 
     outputhash = {}
+    # iterate through every kmer in the hash table
     for key, value in hashtable.items(): 
+	# stores the current kmer key and value 
         mylist = [key,value]
-
-        #print(mylist)
+	# if the current kmer’s count is greater than the threshold, keep it and store it in outputhash 
         if(int(mylist[1]) > int(threshold)):
-            inside = True
             outputhash[mylist[0]] = mylist[1]
-        
+    # assign outputhash which contains unfiltered kmers back to the original hashtable to return 
     hashtable = outputhash
     return hashtable
 
-# Function to filter out low frequency kmers automatically
-   ## Parameters:
-    # hashtable = dictionary
+## Function to filter out low frequency kmers automatically
+# Parameters:
+# hashtable dictionary to store the counted kmers. key = kmer string, value = kmer count
 def filter_auto(hashtable):
+    # dictionary that will store counts as the key and number of kmers with that count as the value
     outputhash = {}
+    # iterate through all the kmers in the inputted hashtabl
+    # create a new dictionary where key = count and value = number of kmers
+    # add to the new dictionary / increment for each kmer 
     for key, value in hashtable.items(): 
         if value in outputhash:
             outputhash[value] += 1
         else:
             outputhash[value] = 1
-        
+            
+    # call find_valley helper function to find the first place where the number of kmers start increasing 
     valleycount = find_valley(outputhash)
     
+    # for user to know what find_valley found to be the optimal filtering threshold
     print("Your recommended filtering count is" + str(valleycount))
     
+    # if no valley was found, notify the user that all the kmer counts are the same and break out of the function 
     if(valleycount == None):
-        print("All kmer counts are of low frequency!")
+        print("All kmer counts are the same!, no filtering is needed")
         return
     
-    keys_to_delete = []  # List to store keys to be deleted
-
-    for key, value in outputhash.items():
-        if key <= valleycount:  
-            keys_to_delete.append(key)  
-
-    for key in keys_to_delete:
-        del outputhash[key]
+    # List to store keys to be deleted
+    keys_to_delete = []  
     
-    hashtable = outputhash
+    # check if count of each kmer is less than valley value, and if so add it to a list of kmers to be deleted 
+    for key, value in hashtable.items():
+        if value <= valleycount:  
+            keys_to_delete.append(key)   
+
+    # delete all necessary kmers from the inputted hashtable and return
+    for key in keys_to_delete:
+        del hashtable[key]
+
     return hashtable
         
-# Helper method
+## This function is a helper method for find_auto that finds the first place where the number of kmers starts increasing
 def find_valley(hashtable):
     valley = list(hashtable.values())[0]
     for key in hashtable:
