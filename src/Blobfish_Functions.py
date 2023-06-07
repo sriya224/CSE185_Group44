@@ -57,10 +57,10 @@ def generateTable(input_fa, kmer_length, output, directionality, filter_kmer, fi
                 
 
 ## Function to generate hashtable with kmer counts (this does not ignore directionality / consider the reverse strand when counting)
-# Parameters: 
-# sequence: DNA sequence from which to count kmers
-# hashtable: data structure to store the counted kmers. key = kmer string, value = kmer count 
-# kmer_length: int with the number of bases that are in each kmer 
+	# Parameters: 
+	# sequence: DNA sequence from which to count kmers
+	# hashtable: data structure to store the counted kmers. key = kmer string, value = kmer count 
+	# kmer_length: int with the number of bases that are in each kmer 
 def count_kmers(sequence, hashtable, kmer_length):
     # iterate through sequence and for every kmer of length kmer_length, push it into the hashtable
     # only unique kmer values are stored, the value of the kmer is incremented if more than one exists
@@ -71,10 +71,10 @@ def count_kmers(sequence, hashtable, kmer_length):
         
 
 ## Function to count kmers while ignoring directionality / considering the reverse strand when counting
-# Parameters: 
-# sequence: DNA sequence from which to count kmers
-# kmer_length: int with the number of bases that are in each kmer 
-# hashtable: data structure to store the counted kmers. key = kmer string, value = kmer count
+	# Parameters: 
+	# sequence: DNA sequence from which to count kmers
+	# kmer_length: int with the number of bases that are in each kmer 
+	# hashtable: data structure to store the counted kmers. key = kmer string, value = kmer count
 def ignore_directionality(sequence, kmer_length, hashtable):
     # reference dictionary that maps each nucleotide to its complement 
     nucleotides = {'A':'T', 'T':'A', 'G':'C', 'C':'G'}
@@ -92,9 +92,9 @@ def ignore_directionality(sequence, kmer_length, hashtable):
             hashtable[kmer_complement] = hashtable.get(kmer_complement, 0) + 1
 
 ## Function to filter out low frequency kmers according to the threshold value 
-# Parameters: 
-# hashtable: dictionary to store the counted kmers. key = kmer string, value = kmer count
-# threshold: any kmers that have a count that is less than or equal to the threshold will be filtered out
+	# Parameters: 
+	# hashtable: dictionary to store the counted kmers. key = kmer string, value = kmer count
+	# threshold: any kmers that have a count that is less than or equal to the threshold will be filtered out
 def filter_count(hashtable, threshold):
     mylist = []
     # dictionary that will store all kmers that are above threshold 
@@ -111,8 +111,8 @@ def filter_count(hashtable, threshold):
     return hashtable
 
 ## Function to filter out low frequency kmers automatically
-# Parameters:
-# hashtable dictionary to store the counted kmers. key = kmer string, value = kmer count
+	# Parameters:
+	# hashtable dictionary to store the counted kmers. key = kmer string, value = kmer count
 def filter_auto(hashtable):
     # dictionary that will store counts as the key and number of kmers with that count as the value
     outputhash = {}
