@@ -14,7 +14,7 @@ __Command__: python blobfish.py -f &lt;filename&gt; -l &lt;kmer length&gt; -o &l
 
 
 __How to Run:__
-1) Instiall Biopython by using the command 
+1) Install Biopython by using the command 
     
         pip install biopython
 2) Install our directory
@@ -28,18 +28,19 @@ __How to Run:__
         python blobfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -canonical -k 10 -o output.txt
     
 __How to Benchmark__
+    
     Please read the README file in the tests folder to find out how to benchmark our tool
     
  __About our Repo:__
     
-- src folder : contains all of the functions that give blobfish its functionality
+1) src folder : contains all of the functions that give blobfish its functionality
     
     - blobfish.py : the main() function for blobfish which takes command line arguments and runs our python function in Blobfish_Functions.py
     
-    - Blobfish_Functions.py : the python script containing functions that calculate kmer count table with
+    - Blobfish_Functions.py : the python script containing functions that calculate kmer count table with the given options
     
-- tests folder : contains files and README regarding benchmarking
+2) tests folder : contains files and README regarding benchmarking
     
     - accuracy.py : file that computes accuracy score for kmer count table and histogram visualizations of benchmarking files
     
-- setup.py : file for setting up blobfish package
+3) setup.py : file for setting up blobfish package
