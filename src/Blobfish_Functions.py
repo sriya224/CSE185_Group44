@@ -15,7 +15,7 @@ from Bio import SeqIO
 # output: the user given output text file 
 # directionality: boolean value to either consider directionality or not 
 # filter_kmer: int value with the threshold value for filtering, if filtering is specified by the user 
-def generateTable(input_fa, kmer_length, output, directionality, filter_kmer):
+def generateTable(input_fa, kmer_length, output, directionality, filter_kmer, filter_rec):
 
     # seq_file has input fasta file's data
     seq_file = input_fa
@@ -37,9 +37,16 @@ def generateTable(input_fa, kmer_length, output, directionality, filter_kmer):
         count_kmers(sequence, hashtable, kmer_length)
         
     ## FILTER
-    # if the user specified a threshold value to filter by in their command, then call filter_low_freq
-    if(filter_kmer > 0):
-        hashtable = filter_low_freq(hashtable, filter_kmer)
+    
+    # If both filter options are chosen, override filter by count and only filter by recommended
+    # Else if filter by recommended option is chosen run filter_auto() else run filter_count()
+    if(filter_kmer > 0 & filter_rec):
+        print('filter by count will be overidden, filter by recommended ')
+        
+    if(filter_rec):
+        hashtable = filter_auto(hashtable)
+    elif(filter_kmer > 0):
+        hashtable = filter_count(hashtable, filter_kmer)
     
     ## OUTPUT
     # write final kmer counts into user specified output file
@@ -88,7 +95,7 @@ def ignore_directionality(sequence, kmer_length, hashtable):
 # threshold parameter is an integer value given by the user. Any kmer frequency lower than the threshold will be dropped
 # output file should be from previous commands in our program and contains calculated kmers and their frequencies
 # threshold parameter is an integer value given by the user. Any kmer frequency lower than the threshold will be dropped
-def filter_low_freq(hashtable, threshold):
+def filter_count(hashtable, threshold):
     inside = False
     mylist = []
     outputhash = {}
@@ -103,7 +110,52 @@ def filter_low_freq(hashtable, threshold):
     hashtable = outputhash
     return hashtable
 
+def filter_auto(hashtable):
+    outputhash = {}
+    for key, value in hashtable.items(): 
+        if value in outputhash:
+            outputhash[value] += 1
+        else:
+            outputhash[value] = 1
+    
+    print(outputhash)
+        
+    valleycount = find_valley(outputhash)
+    
+    print(valleycount)
+    
+    if(valleycount == None):
+        print("All kmer counts are of low frequency!")
+        return
+    
+    
+    keys_to_delete = []  # List to store keys to be deleted
+    
+    print("here")
+    print(outputhash)
 
+    for key, value in outputhash.items():
+        if key <= valleycount:  
+            keys_to_delete.append(key)  
+
+    print(keys_to_delete)
+
+    for key in keys_to_delete:
+        del outputhash[key]
+    
+    
+    hashtable = outputhash
+    return hashtable
+        
+
+def find_valley(hashtable):
+    valley = list(hashtable.values())[0]
+    print('hashtable')
+    print(hashtable)
+    for key in hashtable:
+        if(hashtable[key] - valley > 0):
+            return key
+        valley = hashtable[key]
 
 # In[ ]:
 
