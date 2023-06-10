@@ -21,9 +21,9 @@ __How to Run:__
 2) Install our directory
    
         git clone https://github.com/##user##/CSE185_Group44.git
-3) Change into the directory CSE185_Group44
+3) Change into the directory CSE185_Group44/src
    
-        cd CSE185_Group44
+        cd CSE185_Group44/src
 4) Run the blobfish command! Here is an example:
     
         python blobfish.py -f ~/CSE185_Group44/example_genome.fa -l 6 -canonical -k 10 -o output.txt
@@ -44,4 +44,4 @@ __How to Benchmark__
 
         - accuracy.py : file that computes accuracy score for kmer count table and histogram visualizations of benchmarking files
 
-    3) setup.py : file for setting up blobfish package
+    3) setup.py : file for setting up blobfish package, would implement installable package in future directions
