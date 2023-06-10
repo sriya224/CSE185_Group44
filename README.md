@@ -43,5 +43,6 @@ __How to Benchmark__
     2) tests folder : contains files and README regarding benchmarking
 
         - accuracy.py : file that computes accuracy score for kmer count table and histogram visualizations of benchmarking files
+        - ebola_genome.fa : this is a fasta file containing the ebola virus partial genome Zaire ebolavirus isolate IRF0164
 
     3) setup.py : file for setting up blobfish package, would implement installable package in future directions
